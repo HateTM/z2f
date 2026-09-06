@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "branch": "z2k-enhanced",
-  "seq": 77,
-  "current": "p-82.15",
+  "seq": 78,
+  "current": "p-82.16",
   "install_map": {
   "files/000-zapret2.sh": ["/opt/etc/ndm/netfilter.d/000-zapret2.sh"],
   "files/S99zapret2.new": ["/opt/etc/init.d/S99zapret2"],
@@ -211,7 +211,7 @@
   "files/z2k-tg-redirect.sh": "a44943bee350aab47c86cb5231465a51abe2de6813ac2d1d13cf7e13262f3c29",
   "files/z2k-tg-watchdog.sh": "f433391db09dad96471cf96dc6c814fbff846c285ba3cb424806f08ab040ce8f",
   "files/z2k-update-lists.sh": "e936aa3afbef29ba991a1d51b9d051860a1a9ae453ffe5adbd7292c81d5bb893",
-  "files/z2k-warp.sh": "e2c87c1ce5110dfaa597dc9abcc3a0a65e3ea7d7934bd7b382d484ac436ae29d",
+  "files/z2k-warp.sh": "b77ef2caca56436d6669f001b4c8479bbe8e935c3f4c8ebe964bf047f1c7e2dd",
   "lib/auto_update.sh": "e43295c59979779824351cf2348ec5da156a158e3fe6827d07e4769c80ad0593",
   "lib/config.sh": "e08589c20e3762e5ec7019abd133efc7479c4f396d5997130d657ee393731c8f",
   "lib/config_official.sh": "f350e6b4ae0d935914d35a37ce9a8e819d4dd715df5e23eb1ba8411483948e2e",
@@ -257,7 +257,7 @@
   "webpanel/www/fonts/FiraSans-600-latin.woff2": "f3cc7b2756c566cf8172bfd269d805c4a1eb953f6b6ce8bf2b2ddf49c5422189",
   "webpanel/www/fonts/FiraSans-700-cyrillic.woff2": "42a8013e902099b563e434d3ccb3bed87ff6d6af8d80fe51ff203f2ac487673b",
   "webpanel/www/fonts/FiraSans-700-latin.woff2": "811e73619cc2909792e8fa134c8d1ed714b898310dd4cc218fc29e40a5dc2890",
-  "webpanel/www/index.html": "15cac3dd3fb8f25afdae5da4a634b723a07e00728c7933cdd16e295e01c91cc0",
+  "webpanel/www/index.html": "8f659bc9ce5ac809757596aca79a7b62fe2c566c32c67259c4e1057897addab8",
   "webpanel/www/js/chrome.js": "3e2217758cde6d87f4809aaf65c4aafca582b936d9c53b19abb4adac1479fdef",
   "webpanel/www/js/core/api.js": "eaa798b49c02373a1cffcdee447587f9969194323dd5471ac74a07d4af7b235f",
   "webpanel/www/js/core/auth.js": "7afe5b139737783402f45fb654b9383b24d68779aae93a0f5f1847608252ad8c",
@@ -530,6 +530,7 @@
 {"v": "p-82.12", "type": "patch", "ts": "2026-09-05T14:33:15Z", "ref": "p-82.12", "desc": "Экран входа в панель больше не съезжает вправо: бокового меню на нём нет, и место под него больше не резервируется.", "changed_files": ["webpanel/www/index.html", "webpanel/www/style.css", "UPDATES.json"], "steps": [], "full_install": false},
 {"v": "p-82.13", "type": "patch", "ts": "2026-09-05T16:33:54Z", "ref": "p-82.13", "desc": "Роутеры с выключенным обходом снова обновляются: раньше обновление на них падало на перезапуске службы и каждую ночь откатывалось.", "changed_files": ["webpanel/www/index.html", "lib/auto_update.sh", "UPDATES.json"], "steps": [], "full_install": false},
 {"v": "p-82.14", "type": "patch", "ts": "2026-09-05T17:56:37Z", "ref": "p-82.14", "desc": "Сводка диагностики больше не объявляет поломкой рабочую связку AdGuard Home с прошивочным прокси, а вместо этого ловит устаревшие записи в нём, которые действительно ломают обход.", "changed_files": ["webpanel/www/index.html", "files/z2k-diag.sh", "UPDATES.json"], "steps": [], "full_install": false},
-{"v": "p-82.15", "type": "patch", "ts": "2026-09-06T09:05:47Z", "ref": "p-82.15", "desc": "WARP теперь ставится на все роутеры, что и остальные компоненты: раньше на части архитектур установка отвечала отказом, потому что сборки под них просто не было. И проба блока по объёму снова запускается — у части людей планировщик оставался на старом коде и не запускал её вовсе.", "changed_files": ["webpanel/www/index.html", "files/S99zapret2.new", "files/init.d/S98z2k-detect", "files/z2k-warp.sh", "mtproxy-client/builds/tg-mtproxy-client-linux-386", "mtproxy-client/builds/tg-mtproxy-client-linux-amd64", "mtproxy-client/builds/tg-mtproxy-client-linux-arm", "mtproxy-client/builds/tg-mtproxy-client-linux-arm64", "mtproxy-client/builds/tg-mtproxy-client-linux-mips", "mtproxy-client/builds/tg-mtproxy-client-linux-mips64el", "mtproxy-client/builds/tg-mtproxy-client-linux-mips64le", "mtproxy-client/builds/tg-mtproxy-client-linux-mipsel", "mtproxy-client/builds/tg-mtproxy-client-linux-mipsle", "mtproxy-client/builds/tg-mtproxy-client-linux-ppc64", "mtproxy-client/builds/tg-mtproxy-client-linux-riscv64", "mtproxy-client/builds/tg-mtproxy-client-linux-x86", "z2k-warpd/builds/z2k-warpd-linux-mips64el", "z2k-warpd/builds/z2k-warpd-linux-ppc64", "z2k-warpd/builds/z2k-warpd-linux-riscv64", "z2k-warpd/builds/z2k-warpd-linux-x86", "UPDATES.json"], "steps": ["refresh-binaries", "restart-service"], "full_install": false}
+{"v": "p-82.15", "type": "patch", "ts": "2026-09-06T09:05:47Z", "ref": "p-82.15", "desc": "WARP теперь ставится на все роутеры, что и остальные компоненты: раньше на части архитектур установка отвечала отказом, потому что сборки под них просто не было. И проба блока по объёму снова запускается — у части людей планировщик оставался на старом коде и не запускал её вовсе.", "changed_files": ["webpanel/www/index.html", "files/S99zapret2.new", "files/init.d/S98z2k-detect", "files/z2k-warp.sh", "mtproxy-client/builds/tg-mtproxy-client-linux-386", "mtproxy-client/builds/tg-mtproxy-client-linux-amd64", "mtproxy-client/builds/tg-mtproxy-client-linux-arm", "mtproxy-client/builds/tg-mtproxy-client-linux-arm64", "mtproxy-client/builds/tg-mtproxy-client-linux-mips", "mtproxy-client/builds/tg-mtproxy-client-linux-mips64el", "mtproxy-client/builds/tg-mtproxy-client-linux-mips64le", "mtproxy-client/builds/tg-mtproxy-client-linux-mipsel", "mtproxy-client/builds/tg-mtproxy-client-linux-mipsle", "mtproxy-client/builds/tg-mtproxy-client-linux-ppc64", "mtproxy-client/builds/tg-mtproxy-client-linux-riscv64", "mtproxy-client/builds/tg-mtproxy-client-linux-x86", "z2k-warpd/builds/z2k-warpd-linux-mips64el", "z2k-warpd/builds/z2k-warpd-linux-ppc64", "z2k-warpd/builds/z2k-warpd-linux-riscv64", "z2k-warpd/builds/z2k-warpd-linux-x86", "UPDATES.json"], "steps": ["refresh-binaries", "restart-service"], "full_install": false},
+{"v": "p-82.16", "type": "patch", "ts": "2026-09-06T10:27:39Z", "ref": "p-82.16", "desc": "Установка WARP больше не упирается в GitHub напрямую: движок качается через тот же обходной путь, что и остальные обновления, включая наш узел и зеркала. Заодно скачанный движок теперь сверяется по контрольной сумме.", "changed_files": ["webpanel/www/index.html", "files/z2k-warp.sh", "UPDATES.json"], "steps": [], "full_install": false}
   ]
 }
