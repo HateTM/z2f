@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "branch": "z2k-enhanced",
-  "seq": 78,
-  "current": "p-82.16",
+  "seq": 79,
+  "current": "p-82.17",
   "install_map": {
   "files/000-zapret2.sh": ["/opt/etc/ndm/netfilter.d/000-zapret2.sh"],
   "files/S99zapret2.new": ["/opt/etc/init.d/S99zapret2"],
@@ -136,7 +136,7 @@
   },
   "files_sha256": {
   "files/000-zapret2.sh": "b256194eacf0f89b247cb4f4c467d552afe03ebbc4879b79308eed5f914d385d",
-  "files/S99zapret2.new": "88eac0276eda3561bb4302a1714cd09c98c85427d44632a646bd59dded581c8c",
+  "files/S99zapret2.new": "248cd385388bd3f7ee9691f8fc0cbc4d0c2547c9e418fb58fe04a256702ec35c",
   "files/etc/z2k-roots.pem": "a6cf5a695274d4f36b401cc62183895af11e68b02417638a070465c77f4caf00",
   "files/etc/z2k-update-pub.pem": "1041720fa0dff53e2babbf547a705c2f43c30bca2c6ca2ddf7144cfe3b470a01",
   "files/fake/active_discord_udp.bin": "2fe18b3bd20807d36704d0b072092ee49ae84edca907a4420ab9a0f0f28fddcf",
@@ -205,7 +205,7 @@
   "files/z2k-insta-ip-refresh.sh": "67d073f508bd3bc0b3d83ac6cb91635f2817fdbb85af997ef8714c909078da69",
   "files/z2k-nfqueue-selfheal.sh": "4095adce7626c7ceffa6779be428920286b1dd9d98427e1e49b36d2895d3fd8a",
   "files/z2k-ppe-deoffload.sh": "9a98f3f22c6572d3692a7b4cf7fb1432f2c42fc9d67d06e3841cffb9c0f4b4e4",
-  "files/z2k-scheduler.sh": "7bcdac1d25c6c3846326a14035ad0ad93d7f103d721d23935e54c968b8549fe2",
+  "files/z2k-scheduler.sh": "2566a7aeec2d66ba1ef4ce1844b8b5c884e6d327955d7684c35040c452ef4ffc",
   "files/z2k-stats-upload.sh": "45f33be7405bfa1e6445b6c7969cfa2555778fae05843e4dd60f06bc816e1ce5",
   "files/z2k-tcp16-probe.sh": "bc1d6af7370b5efbed14103be4420b24a996cafaf67bd7cc32075be1be9647f9",
   "files/z2k-tg-redirect.sh": "a44943bee350aab47c86cb5231465a51abe2de6813ac2d1d13cf7e13262f3c29",
@@ -257,7 +257,7 @@
   "webpanel/www/fonts/FiraSans-600-latin.woff2": "f3cc7b2756c566cf8172bfd269d805c4a1eb953f6b6ce8bf2b2ddf49c5422189",
   "webpanel/www/fonts/FiraSans-700-cyrillic.woff2": "42a8013e902099b563e434d3ccb3bed87ff6d6af8d80fe51ff203f2ac487673b",
   "webpanel/www/fonts/FiraSans-700-latin.woff2": "811e73619cc2909792e8fa134c8d1ed714b898310dd4cc218fc29e40a5dc2890",
-  "webpanel/www/index.html": "8f659bc9ce5ac809757596aca79a7b62fe2c566c32c67259c4e1057897addab8",
+  "webpanel/www/index.html": "220628975dca5adfa41372ce4ad1339ff49153720377692141fd75ec4fb4a1e3",
   "webpanel/www/js/chrome.js": "3e2217758cde6d87f4809aaf65c4aafca582b936d9c53b19abb4adac1479fdef",
   "webpanel/www/js/core/api.js": "eaa798b49c02373a1cffcdee447587f9969194323dd5471ac74a07d4af7b235f",
   "webpanel/www/js/core/auth.js": "7afe5b139737783402f45fb654b9383b24d68779aae93a0f5f1847608252ad8c",
@@ -531,6 +531,7 @@
 {"v": "p-82.13", "type": "patch", "ts": "2026-09-05T16:33:54Z", "ref": "p-82.13", "desc": "Роутеры с выключенным обходом снова обновляются: раньше обновление на них падало на перезапуске службы и каждую ночь откатывалось.", "changed_files": ["webpanel/www/index.html", "lib/auto_update.sh", "UPDATES.json"], "steps": [], "full_install": false},
 {"v": "p-82.14", "type": "patch", "ts": "2026-09-05T17:56:37Z", "ref": "p-82.14", "desc": "Сводка диагностики больше не объявляет поломкой рабочую связку AdGuard Home с прошивочным прокси, а вместо этого ловит устаревшие записи в нём, которые действительно ломают обход.", "changed_files": ["webpanel/www/index.html", "files/z2k-diag.sh", "UPDATES.json"], "steps": [], "full_install": false},
 {"v": "p-82.15", "type": "patch", "ts": "2026-09-06T09:05:47Z", "ref": "p-82.15", "desc": "WARP теперь ставится на все роутеры, что и остальные компоненты: раньше на части архитектур установка отвечала отказом, потому что сборки под них просто не было. И проба блока по объёму снова запускается — у части людей планировщик оставался на старом коде и не запускал её вовсе.", "changed_files": ["webpanel/www/index.html", "files/S99zapret2.new", "files/init.d/S98z2k-detect", "files/z2k-warp.sh", "mtproxy-client/builds/tg-mtproxy-client-linux-386", "mtproxy-client/builds/tg-mtproxy-client-linux-amd64", "mtproxy-client/builds/tg-mtproxy-client-linux-arm", "mtproxy-client/builds/tg-mtproxy-client-linux-arm64", "mtproxy-client/builds/tg-mtproxy-client-linux-mips", "mtproxy-client/builds/tg-mtproxy-client-linux-mips64el", "mtproxy-client/builds/tg-mtproxy-client-linux-mips64le", "mtproxy-client/builds/tg-mtproxy-client-linux-mipsel", "mtproxy-client/builds/tg-mtproxy-client-linux-mipsle", "mtproxy-client/builds/tg-mtproxy-client-linux-ppc64", "mtproxy-client/builds/tg-mtproxy-client-linux-riscv64", "mtproxy-client/builds/tg-mtproxy-client-linux-x86", "z2k-warpd/builds/z2k-warpd-linux-mips64el", "z2k-warpd/builds/z2k-warpd-linux-ppc64", "z2k-warpd/builds/z2k-warpd-linux-riscv64", "z2k-warpd/builds/z2k-warpd-linux-x86", "UPDATES.json"], "steps": ["refresh-binaries", "restart-service"], "full_install": false},
-{"v": "p-82.16", "type": "patch", "ts": "2026-09-06T10:27:39Z", "ref": "p-82.16", "desc": "Установка WARP больше не упирается в GitHub напрямую: движок качается через тот же обходной путь, что и остальные обновления, включая наш узел и зеркала. Заодно скачанный движок теперь сверяется по контрольной сумме.", "changed_files": ["webpanel/www/index.html", "files/z2k-warp.sh", "UPDATES.json"], "steps": [], "full_install": false}
+{"v": "p-82.16", "type": "patch", "ts": "2026-09-06T10:27:39Z", "ref": "p-82.16", "desc": "Установка WARP больше не упирается в GitHub напрямую: движок качается через тот же обходной путь, что и остальные обновления, включая наш узел и зеркала. Заодно скачанный движок теперь сверяется по контрольной сумме.", "changed_files": ["webpanel/www/index.html", "files/z2k-warp.sh", "UPDATES.json"], "steps": [], "full_install": false},
+{"v": "p-82.17", "type": "patch", "ts": "2026-09-06T18:31:04Z", "ref": "p-82.17", "desc": "Планировщик снова подхватывает новый код после обновления на роутерах без пакета coreutils-stat: время файла теперь читается средством, которое есть в busybox всегда.", "changed_files": ["webpanel/www/index.html", "files/S99zapret2.new", "files/z2k-scheduler.sh", "UPDATES.json"], "steps": ["restart-service"], "full_install": false}
   ]
 }
