@@ -341,16 +341,28 @@ warp_pbr_down() {
 # ---- установка / удаление -------------------------------------------------------
 warp_arch() {
     local a
-    a=$(grep -hoE 'mipselsf|mipsel|mips64el|mips64|mips|aarch64|armv7|armv5|x86_64|i[36]86' \
+    # ПОКРЫТИЕ ТО ЖЕ, ЧТО У ОСТАЛЬНОГО ПРОЕКТА (06.09.2026).
+    #
+    # Раньше здесь опознавались пять арок из девяти, под которые собирается
+    # клиент туннеля, и на остальных функция возвращала пустоту. Установка
+    # отвечала `unsupported architecture` — строкой, из которой человек не
+    # может понять, что дело не в его роутере, а в том, что сборки под него
+    # просто нет. Разница была случайной: движок на Go и кросс-компилируется
+    # всюду, где и всё остальное.
+    a=$(grep -hoE 'mipselsf|mipsel|mips64el|mips64le|mips64|mips|aarch64|armv7|armv5|x86_64|i[36]86|ppc64|powerpc64|riscv64' \
             /opt/etc/opkg.conf /opt/etc/opkg/*.conf 2>/dev/null | head -1)
     [ -n "$a" ] || a=$(uname -m)
     case "$a" in
-        aarch64|arm64)      printf 'arm64' ;;
-        mipselsf|mipsel)    printf 'mipsel' ;;
-        mips)               grep -qiE 'system type.*MediaTek' /proc/cpuinfo 2>/dev/null && printf 'mipsel' || printf 'mips' ;;
-        armv7*)             printf 'arm' ;;
-        x86_64)             printf 'amd64' ;;
-        *)                  printf '' ;;
+        aarch64|arm64)          printf 'arm64' ;;
+        mips64el|mips64le)      printf 'mips64el' ;;
+        mipselsf|mipsel)        printf 'mipsel' ;;
+        mips)                   grep -qiE 'system type.*MediaTek' /proc/cpuinfo 2>/dev/null && printf 'mipsel' || printf 'mips' ;;
+        armv7*)                 printf 'arm' ;;
+        x86_64)                 printf 'amd64' ;;
+        i[3456]86|x86)          printf 'x86' ;;
+        ppc64|powerpc64)        printf 'ppc64' ;;
+        riscv64)                printf 'riscv64' ;;
+        *)                      printf '' ;;
     esac
 }
 

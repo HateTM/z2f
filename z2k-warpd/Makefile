@@ -6,9 +6,9 @@ GO ?= $(HOME)/go/bin/go1.25.12
 GOFLAGS=-ldflags="-s -w" -trimpath -buildvcs=false
 PKG=./cmd/z2k-warpd
 
-.PHONY: all arm64 arm mipsel mips x86_64 local test clean aliases
+.PHONY: all arm64 arm mipsel mips x86_64 x86 mips64el ppc64 riscv64 local test clean aliases
 
-all: arm64 arm mipsel mips x86_64 aliases
+all: arm64 arm mipsel mips x86_64 x86 mips64el ppc64 riscv64 aliases
 
 arm64:
 	CGO_ENABLED=0 GOOS=linux GOARCH=arm64 $(GO) build $(GOFLAGS) -o builds/$(BINARY)-linux-arm64 $(PKG)
@@ -24,6 +24,26 @@ mips:
 
 x86_64:
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GO) build $(GOFLAGS) -o builds/$(BINARY)-linux-amd64 $(PKG)
+
+# АРКИ ВРОВЕНЬ С ОСТАЛЬНЫМ ПРОЕКТОМ (06.09.2026).
+#
+# Движок собирался под пять арок, а клиент туннеля — под девять. Человек на
+# неподдержанной коробке жал «Установить WARP» и получал `unsupported
+# architecture`, из которого причина не читается: он думал, что у него что-то
+# сломано, а сборки под него просто не было. Разницы по существу нет — движок
+# на Go и кросс-компилируется всюду, где и остальное, — так что она была
+# случайной, а не решением.
+x86:
+	CGO_ENABLED=0 GOOS=linux GOARCH=386 $(GO) build $(GOFLAGS) -o builds/$(BINARY)-linux-x86 $(PKG)
+
+mips64el:
+	CGO_ENABLED=0 GOOS=linux GOARCH=mips64le GOMIPS64=softfloat $(GO) build $(GOFLAGS) -o builds/$(BINARY)-linux-mips64el $(PKG)
+
+ppc64:
+	CGO_ENABLED=0 GOOS=linux GOARCH=ppc64 $(GO) build $(GOFLAGS) -o builds/$(BINARY)-linux-ppc64 $(PKG)
+
+riscv64:
+	CGO_ENABLED=0 GOOS=linux GOARCH=riscv64 $(GO) build $(GOFLAGS) -o builds/$(BINARY)-linux-riscv64 $(PKG)
 
 local:
 	$(GO) build $(GOFLAGS) -o $(BINARY) $(PKG)

@@ -96,3 +96,11 @@ mtproxy-client	.	mtproxy-client/builds	tg-mtproxy-client	mips64le	mips64le	GOMIP
 mtproxy-client	.	mtproxy-client/builds	tg-mtproxy-client	386	386	-
 rt-proxy	.	mtproxy-client/builds	z2k-rt-proxy	mipsle	mipsle	GOMIPS=softfloat
 z2k-warpd	./cmd/z2k-warpd	z2k-warpd/builds	z2k-warpd	mipsle	mipsle	GOMIPS=softfloat
+
+# Движок WARP вровень с остальным проектом (06.09.2026): собирался под пять
+# арок против девяти у клиента туннеля, и на остальных установка отвечала
+# `unsupported architecture`. Разница была случайной, а не решением.
+z2k-warpd	./cmd/z2k-warpd	z2k-warpd/builds	z2k-warpd	386	x86	-
+z2k-warpd	./cmd/z2k-warpd	z2k-warpd/builds	z2k-warpd	mips64le	mips64el	GOMIPS64=softfloat
+z2k-warpd	./cmd/z2k-warpd	z2k-warpd/builds	z2k-warpd	ppc64	ppc64	-
+z2k-warpd	./cmd/z2k-warpd	z2k-warpd/builds	z2k-warpd	riscv64	riscv64	-
