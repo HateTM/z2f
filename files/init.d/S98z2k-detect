@@ -1,4 +1,11 @@
 #!/bin/sh
+# PATH с /opt/bin: NDM, cron и загрузка дают урезанный PATH, где инструментов
+# Entware нет. Вызовы под `2>/dev/null` в таком окружении отказывают МОЛЧА —
+# ровно так у S99zapret2 пропускалась сверка планировщика, и новый код
+# планировщика не подхватывался до перезагрузки (06.09.2026). У соседних
+# init-скриптов эта строка стоит с самого начала, здесь её не было.
+export PATH=/opt/sbin:/opt/bin:/opt/usr/sbin:/opt/usr/bin:/sbin:/usr/sbin:/bin:/usr/bin
+
 # S98z2k-detect — reactive DPI-detection daemon.
 #
 # Watches DNS queries (dnsmasq log tail), probes targets through the
