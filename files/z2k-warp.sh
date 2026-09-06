@@ -27,6 +27,25 @@
 export PATH="${Z2K_STUB_PATH:+$Z2K_STUB_PATH:}/opt/sbin:/opt/bin:/opt/usr/sbin:/opt/usr/bin:/sbin:/usr/sbin:/bin:/usr/bin"
 
 ZAPRET2_DIR="${ZAPRET2_DIR:-/opt/zapret2}"
+
+# ОБЩИЕ УТИЛИТЫ — ОБЯЗАТЕЛЬНО, ИНАЧЕ У WARP НЕТ НИ ОДНОГО ЗАПАСНОГО ПУТИ.
+#
+# Этот скрипт не подключал lib/utils.sh вовсе. Значит `z2k_fetch` в нём не
+# существовал, проверка `command -v z2k_fetch` всегда была ложной, и загрузка
+# движка сразу уходила на голый `curl` к raw.githubusercontent.com. Ни слоя
+# через наш узел, ни jsdelivr, ни gh-proxy — одна попытка и всё.
+#
+# У человека это выглядело так (06.09.2026): задача шла ровно три минуты,
+# `curl: (28) Timed out after 180001 milliseconds`, «engine download failed».
+# Ровно один `--max-time 180`, то есть цепочка не отработала ни на шаг.
+#
+# Тем же махом чинится и проверка суммы: `z2k_sha256_file` здесь тоже
+# вызывается через `command -v`, то есть до сих пор молча пропускалась, и
+# движок ставился без сверки с манифестом.
+if [ -r "$ZAPRET2_DIR/lib/utils.sh" ]; then
+    # shellcheck source=/dev/null
+    . "$ZAPRET2_DIR/lib/utils.sh" >/dev/null 2>&1
+fi
 CONFIG_FILE="${CONFIG_FILE:-$ZAPRET2_DIR/config}"
 WARP_BIN="${WARP_BIN:-/opt/sbin/z2k-warpd}"
 WARP_INIT="${WARP_INIT:-/opt/etc/init.d/S51z2k-warp}"
